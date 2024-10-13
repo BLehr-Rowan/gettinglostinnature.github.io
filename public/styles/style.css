@@ -1,9 +1,257 @@
-html, body
-{
+/* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f4f8;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* MEDIA QUERIES FOR ALL PAGES */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    input, button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+/* INDEX PAGE STYLES */
+.index-page body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px;
+}
+
+.index-page h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+.index-page h2 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #555;
+}
+
+.index-page form {
+    margin: 20px 0;
+}
+
+/* LOGIN PAGE STYLES */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#loginForm {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+    #loginForm input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+    }
+
+        #loginForm input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        #loginForm input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+            #loginForm input[type="submit"]:hover {
+                background-color: #0056b3;
+            }
+
+/* SIGN-UP PAGE STYLES */
+.signup-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+    .signup-page form {
+        background-color: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .signup-page input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .signup-page button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+    }
+
+        .signup-page button:hover {
+            background-color: #218838;
+        }
+
+/* MAP PAGE STYLES */
+.map-page, .map-page body, .map-page html {
+    width: 100%;
     height: 100%;
 }
-#map
-{
-    height: 100%;
+
+    .map-page #map {
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+@media (max-width: 768px) {
+    .map-page #map {
+        height: 80vh;
+        margin: 10px;
+    }
+}
+
+/* PROFILE PAGE STYLES */
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3f6fa;
+}
+
+nav {
     width: 100%;
+    background-color: #007bff;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+#profile-greeting {
+    margin: 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#hero-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#aboutMe {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+}
+
+    #logout-btn:hover {
+        background-color: #c82333;
+    }
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    #aboutMe {
+        width: 100%;
+    }
 }
