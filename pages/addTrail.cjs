@@ -21,6 +21,6 @@ module.exports = {
             "x2": req.query.x2,
             "y2": req.query.y2
         });
-        res.render("map");
+        res.redirect("map");
     }
 };
