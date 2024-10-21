@@ -12,6 +12,6 @@ module.exports = {
             res.redirect("/profile");
             return;
         }
-        res.render("index");
+        res.render("map");
     }
 };
