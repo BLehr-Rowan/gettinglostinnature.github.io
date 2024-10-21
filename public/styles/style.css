@@ -29,7 +29,7 @@ body {
 }
 
 /* INDEX PAGE STYLES */
-.index-page body {
+/* .index-page body {
     background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
@@ -51,10 +51,10 @@ body {
 
 .index-page form {
     margin: 20px 0;
-}
+} */
 
 /* LOGIN PAGE STYLES */
-.login-page {
+/* .login-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,10 +95,10 @@ body {
 
             #loginForm input[type="submit"]:hover {
                 background-color: #0056b3;
-            }
+            } */
 
 /* SIGN-UP PAGE STYLES */
-.signup-page {
+/* .signup-page {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,10 +132,10 @@ body {
 
         .signup-page button:hover {
             background-color: #218838;
-        }
+        } */
 
 /* MAP PAGE STYLES */
-.map-page, .map-page body, .map-page html {
+/* .map-page, .map-page body, .map-page html {
     width: 100%;
     height: 100%;
 }
@@ -153,16 +153,16 @@ body {
         height: 80vh;
         margin: 10px;
     }
-}
+} */
 
 /* PROFILE PAGE STYLES */
-.profile-page {
+/* .profile-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     background-color: #f3f6fa;
-}
+} */
 
 nav {
     width: 100%;

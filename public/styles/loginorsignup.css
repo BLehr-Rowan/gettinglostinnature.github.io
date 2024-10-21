@@ -1,0 +1,23 @@
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    color: #555;
+}
+
+form {
+    margin: 20px 0;
+}
