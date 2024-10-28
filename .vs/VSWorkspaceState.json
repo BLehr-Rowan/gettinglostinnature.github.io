@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\pages",
     "\\public",
+    "\\public\\scripts",
     "\\public\\styles",
-    "\\templates",
-    "\\webserver"
+    "\\templates"
   ],
-  "SelectedNode": "\\public\\styles\\style.css",
+  "SelectedNode": "\\start.bat",
   "PreviewInSolutionExplorer": false
 }
