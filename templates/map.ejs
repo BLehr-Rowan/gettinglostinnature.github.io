@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="author" content="Cory Lillis">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            Welcome To The Jungle!
-        </title>
-        <link rel="stylesheet" type="text/css" href="/styles/map.css">
-    </head>
-    <body>
-        <header>
-            <h1>Welcome to Google Maps Directions</h1>
-            <div class="button-container">
-                <button id="login-button">Login</button>
-                <button id="signup-button">Sign Up</button>
-            </div>
-        </header>
-        <div id="map"></div>
-        <script src="scripts/map.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap" async defer></script>
-    </body>
+<head>
+    <meta name="author" content="Cory Lillis">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Lost! In Nature</title>
+    <link rel="stylesheet" type="text/css" href="/styles/map.css">
+    <style>
+        /* Inline CSS to remove scrollbars and adjust map size */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #map {
+            height: calc(100vh - 100px); /* Adjust for header height */
+            width: 100vw; /* Full viewport width */
+        }
+        header {
+            height: 100px; /* Set to match map height offset */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-color: #f8f8f8;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Getting Lost! In Nature</h1>
+        <div class="button-container">
+            <button id="login-button">Login</button>
+            <button id="signup-button">Sign Up</button>
+        </div>
+    </header>
+    <div id="map"></div>
+    <script src="scripts/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap" async defer></script>
+</body>
 </html>

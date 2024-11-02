@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Lost, in Nature!</title>
+    <style>
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Ensure no scrollbars on the body */
+        }
+
+        #map {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none; /* Allow mouse events to pass through to the map */
+        }
+
+        #moveBoxButton {
+            position: absolute;
+            top: 10px;
+            left: 85%;
+            z-index: 2;
+            pointer-events: auto;
+            background-color: #0ca519;
+            color: white;
+            height: 50px;
+            width: 120px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #box {
+            position: absolute;
+            background-color: #0ca519;
+            width: 30%;
+            height: calc(100% - 20px);
+            top: 0px;
+            bottom: 10px;
+            left: -60%; /* Initially off-screen */
+            transition: left 1s ease-in-out;
+            padding: 20px;
+            color: white;
+            overflow: auto;
+            pointer-events: auto; /* Ensure the box is scrollable */
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="moveBoxButton" onclick="moveBox()">My Trails</button>
+    <div id="container"></div>
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap"
+            async defer></script>
+
+    <script>
+        let map;
+        let directionsService;
+        let directionsRenderer;
+        let markers = [];
+        let points = [];
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 7,
+                center: { lat: 43.65107, lng: -79.347015 } // Centered in Toronto
+            });
+
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            // Add a click listener to the map
+            map.addListener('click', (event) => {
+                if (markers.length < 2) {
+                    addMarker(event.latLng);
+                    points.push(event.latLng);
+
+                    // Once two points are selected, calculate and display the route
+                    if (markers.length === 2) {
+                        calculateAndDisplayRoute(points[0], points[1]);
+                    }
+                } else {
+                    // Reset if two points are already selected
+                    resetMap();
+                }
+            });
+        }
+
+        function addMarker(location) {
+            let marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            markers.push(marker);
+        }
+
+        function calculateAndDisplayRoute(origin, destination) {
+            let request = {
+                origin: origin,
+                destination: destination,
+                travelMode: 'WALKING'
+            };
+
+            directionsService.route(request, (result, status) => {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(result);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+
+        function resetMap() {
+            // Clear markers
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+            points = [];
+
+            // Clear directions
+            directionsRenderer.set('directions', null);
+        }
+
+        // Function to create and populate the box
+        function createBox() {
+            var container = document.getElementById('container');
+            var boxContents = 'this is a placeholder, saved trails will appear here';
+
+            var box = document.createElement('div');
+            box.id = 'box';
+            box.innerHTML = boxContents;
+
+            container.appendChild(box);
+        }
+
+        function moveBox() {
+            var box = document.getElementById('box');
+            var moveBoxButton = document.getElementById('moveBoxButton');
+            if (box.style.left === '-60%' || box.style.left === '') {
+                box.style.left = '0px'; // Slide the box in
+              
+            } else {
+                box.style.left = '-60%'; // Move it off-screen
+                moveBoxButton.textContent = 'My Trails';
+            }
+        }
+
+        // Create the box when the page loads
+        window.onload = createBox;
+    </script>
+</body>
+
+</html>
