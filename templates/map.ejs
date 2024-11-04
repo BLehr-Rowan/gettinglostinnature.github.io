@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Lost! In Nature</title>
-    <link rel="stylesheet" type="text/css" href="/styles/map.css">
+    <link rel="stylesheet" type="text/css" href="/styles/map.css"> <!-- Link to external CSS file -->
     <style>
         /* Inline CSS to remove scrollbars and adjust map size */
         html, body {
@@ -35,14 +35,39 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to Getting Lost! In Nature</h1>
+
+   <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
+
         <div class="button-container">
             <button id="login-button">Login</button>
             <button id="signup-button">Sign Up</button>
         </div>
+         <div class="search-container">
+        <input type="text" placeholder="Search for trails..." aria-label="Search for trails"> <!-- Search input -->
+        <button id="search-button">Search</button> <!-- Search button -->
+    </div>
     </header>
+    
     <div id="map"></div>
+
+    <!-- Modal Structure -->
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <h2>Welcome!</h2>
+            <p>Getting Lost (In Nature) finds walking trails within a given area for you to explore. <br>Try clicking two points on the map to get started.</p>
+            <button class="modal-close" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
     <script src="scripts/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap" async defer></script>
+    
+    <script>
+        // JavaScript to close the modal
+        function closeModal() {
+            document.getElementById("welcomeModal").classList.add("hidden");
+        }
+
+    </script>
 </body>
 </html>
