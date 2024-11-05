@@ -144,7 +144,7 @@ button {
     /* Push logo to the right */
 }
 
-/* Style the login and signup submit buttons */
+/* Style the login and sign up submit buttons */
 #loginForm input[type="submit"],
 #signUpForm input[type="submit"] {
     background-color: #2a852d;
