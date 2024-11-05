@@ -1,14 +1,14 @@
-
-body, html {
+body,
+html {
     width: 100%;
     height: 100%;
 }
 
 header {
     display: flex;
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: center; 
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,24 +32,26 @@ button {
     button:hover {
         background-color: #2a8542;
     }
+
 /* Search Bar Styles */
 .search-container {
     display: flex;
     align-items: center;
-    margin-left: 20px; /* Space between logo and search bar */
+    margin-left: 20px;
+    /* Space between logo and search bar */
 }
 
     .search-container input[type="text"] {
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        width: 200px; 
+        width: 200px;
     }
 
     .search-container button {
         margin-left: 5px;
         padding: 8px 12px;
-        background-color: #2a852d; 
+        background-color: #2a852d;
         color: #fff;
         border: none;
         border-radius: 4px;
@@ -57,8 +59,9 @@ button {
     }
 
         .search-container button:hover {
-            background-color: #2a8542; 
+            background-color: #2a8542;
         }
+
 #map {
     width: 100%;
     height: 100%;
@@ -133,7 +136,27 @@ button {
 
 
 #logo-image {
-    width: 100px; /* Adjust the width as necessary */
-    height: auto; /* Keep aspect ratio */
-    margin-left: auto; /* Push logo to the right */
+    width: 100px;
+    /* Adjust the width as necessary */
+    height: auto;
+    /* Keep aspect ratio */
+    margin-left: auto;
+    /* Push logo to the right */
 }
+
+/* Style the login and signup submit buttons */
+#loginForm input[type="submit"],
+#signUpForm input[type="submit"] {
+    background-color: #2a852d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    #loginForm input[type="submit"]:hover,
+    #signUpForm input[type="submit"]:hover {
+        background-color: #2a8542;
+    }
