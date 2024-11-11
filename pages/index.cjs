@@ -5,13 +5,13 @@
 module.exports = {
     name: "/",
     method: "get",
-    execute(req, res)
-    {
-        if(req.cookies.username)
-        {
+    execute(req, res) {
+        if (req.cookies.username) {
             res.redirect("/profile");
             return;
         }
-        res.render("map");
+        res.render("map", {
+            loggedIn: req.cookies.username !== undefined,
+        });
     }
 };
