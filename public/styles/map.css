@@ -29,9 +29,9 @@ button {
     cursor: pointer;
 }
 
-    button:hover {
-        background-color: #2a8542;
-    }
+button:hover {
+    background-color: #2a8542;
+}
 
 /* Search Bar Styles */
 .search-container {
@@ -40,26 +40,26 @@ button {
     margin-left: 20px;
 }
 
-    .search-container input[type="text"] {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 200px;
-    }
+.search-container input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
 
-    .search-container button {
-        margin-left: 5px;
-        padding: 8px 12px;
-        background-color: #2a852d;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+.search-container button {
+    margin-left: 5px;
+    padding: 8px 12px;
+    background-color: #2a852d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-        .search-container button:hover {
-            background-color: #2a8542;
-        }
+.search-container button:hover {
+    background-color: #2a8542;
+}
 
 #map {
     width: 100%;
@@ -122,9 +122,9 @@ button {
     cursor: pointer;
 }
 
-    .modal-close:hover {
-        background-color: #2a8542;
-    }
+.modal-close:hover {
+    background-color: #2a8542;
+}
 
 .modal.hidden {
     opacity: 0;
@@ -150,8 +150,8 @@ button {
     cursor: pointer;
 }
 
-    #loginForm input[type="submit"]:hover,
-    #signUpForm input[type="submit"]:hover,
-    #profileForm input[type="submit"]:hover {
-        background-color: #2a8542;
-    }
+#loginForm input[type="submit"]:hover,
+#signUpForm input[type="submit"]:hover,
+#profileForm input[type="submit"]:hover {
+    background-color: #2a8542;
+}
