@@ -19,76 +19,14 @@
 
         #map {
             height: calc(100vh - 100px);
-            /* Adjust for header height */
             width: 100vw;
-            /* Full viewport width */
         }
 
         header {
             height: 100px;
-            /* Set to match map height offset */
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
             background-color: #f8f8f8;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .button-container {
-            display: flex;
-            gap: 10px;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-
-        <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
-
-        <div class="button-container">
-            <% if(loggedIn) { %>
-                <form id="loginForm" action="/login" method="post">
-                    <input type="submit" id="login-button" name="login" value="Login">
-                </form>
-                <form id="signUpForm" action="/create-account" method="post">
-                    <input type="submit" id="signup-button" name="signUp" value="Sign Up">
-                </form>
-                <% } %>
-                    <!-- <button id="login-button">Login</button>
-            <button id="signup-button">Sign Up</button> -->
-        </div>
-        <div class="search-container">
-            <input type="text" placeholder="Search for trails..." aria-label="Search for trails"> <!-- Search input -->
-            <button id="search-button">Search</button> <!-- Search button -->
-        </div>
-
-    </header>
-
-    <div id="map"></div>
-
-    <!-- Modal Structure -->
-    <div id="welcomeModal" class="modal">
-        <div class="modal-content">
-            <h2>Welcome!</h2>
-            <p>Getting Lost (In Nature) finds walking trails within a given area for you to explore. <br>Try clicking
-                two points on the map to get started.</p>
-            <button class="modal-close" onclick="closeModal()">Got it!</button>
-        </div>
-    </div>
-
-    <script src="scripts/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap"
-        async defer></script>
-
-    <script>
-        // JavaScript to close the modal
-        function closeModal() {
-            document.getElementById("welcomeModal").classList.add("hidden");
-        }
-
-    </script>
-</body>
-
-</html>
+     
