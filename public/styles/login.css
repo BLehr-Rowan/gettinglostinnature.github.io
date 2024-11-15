@@ -5,6 +5,17 @@ body {
     height: 100vh;
 }
 
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
 #loginForm {
     background-color: white;
     padding: 40px;
@@ -30,7 +41,7 @@ body {
         }
 
         #loginForm input[type="submit"] {
-            background-color: #007bff;
+            background-color: #2a852d;
             color: white;
             border: none;
             margin-top: 10px;
@@ -38,5 +49,5 @@ body {
         }
 
             #loginForm input[type="submit"]:hover {
-                background-color: #0056b3;
+                background-color: #2a8542;
             }
