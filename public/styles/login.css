@@ -5,6 +5,18 @@ body {
     height: 100vh;
 }
 
+
+.logo-container {
+    height: 50px; /* Set the visible height */
+    overflow: hidden;
+}
+
+    .logo-container img {
+        width: auto;
+        height: 100%;
+    }
+
+
 header {
     display: flex;
     justify-content: center;
