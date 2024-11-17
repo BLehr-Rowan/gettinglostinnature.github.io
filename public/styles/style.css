@@ -162,14 +162,14 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #f3f6fa;
-} */
+} 
 
-nav {
+    nav {
     width: 100%;
-    background-color: #007bff;
+    background-color: white;
     padding: 10px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+}*/
 
     nav ul {
         display: flex;
@@ -218,7 +218,7 @@ table {
 }
 
 thead {
-    background-color: #007bff;
+    background-color: #2a852d;
     color: white;
 }
 
@@ -236,14 +236,14 @@ tbody tr:hover {
 }
 
 #logout-btn {
-    background-color: #dc3545;
+    background-color: #2a852d;
     color: white;
     border: none;
     padding: 10px 20px;
 }
 
     #logout-btn:hover {
-        background-color: #c82333;
+        background-color: #45a049;
     }
 
 @media (max-width: 600px) {

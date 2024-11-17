@@ -7,8 +7,11 @@ body {
 
 
 .logo-container {
-    height: 100px; 
+    height: 100px;
     overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
     .logo-container img {
@@ -16,8 +19,7 @@ body {
         height: 100%;
     }
 
-
-header {
+/*header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -29,7 +31,7 @@ header {
     position: fixed;
     top: 0;
     z-index: 10; 
-}
+}*/
 
 
 #loginForm {
