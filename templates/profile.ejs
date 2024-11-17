@@ -1,94 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="author" content="Cory Lillis">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            Log In
-        </title>
-        <link rel="stylesheet" type="text/css" href="/styles/style.css">
-        <link rel="stylesheet" type="text/css" href="/styles/profile.css">
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/profile">
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="/map">
-                        Map
-                    </a>
-                </li>
-            </ul>
-        </nav>
-            <h1 id="profile-greeting">
-                Hello <%= username %>
-            </h1>
-            <header>
-                <img src=<%= pfp %> id="hero-image">
-                <input type="file" id="userImage" name="image">
-                <label for="userImage" id="uploadButton"></label>
-            </header>
-            <section id="aboutMe" onClick="makeEditable(this)">
-                <p id="aboutMeContent">
-                    <%= bio %>
-                </p>
-            </section>
-            <section id="user-options">
-                <h3>
-                    My Trails
-                </h3>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>
-                            x1
-                        </th>
-                        <th>
-                            y1
-                        </th>
-                        <th>
-                            x2
-                        </th>
-                        <th>
-                            y2
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-<%
-    for(const trail of trails)
-    {
-%>
-                    <tr>
-                        <th>
-                            <%= trail.x1 %>
-                        </th>
-                        <th>
-                            <%= trail.y1 %>
-                        </th>
-                        <th>
-                            <%= trail.x2 %>
-                        </th>
-                        <th>
-                            <%= trail.y2 %>
-                        </th>
-                    </tr>
-<%
-    }
-%>
-                </tbody>
-            </table>
-            <form id="logoutForm" action="/logout" method="post">
-                <input type="submit" id="logout-btn" name="logout" value="logout">
-            </form>
-            <br>
-        </section>
-        <script Content-Type="application/javascript" src="/scripts/makeEditable.js"></script>
-        <script src="/scripts/pageStyle.js"></script>
-    </body>
+<head>
+    <meta name="author" content="Cory Lillis">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="logo-container">
+    <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
+    </div>
+    <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <!-- Profile button -->
+                <button onclick="window.location.href='/profile'" class="nav-button">Profile</button>
+            </li>
+            <li>
+                <!-- Map button -->
+                <button onclick="window.location.href='/map'" class="nav-button">Map</button>
+            </li>
+        </ul>
+    </nav>
+
+    <h1 id="profile-greeting">Hello <%= username %></h1>
+    
+    <header>
+        <img src="<%= pfp %>" id="hero-image">
+        <input type="file" id="userImage" name="image">
+        <label for="userImage" id="uploadButton"></label>
+    </header>
+
+    <section id="aboutMe" onClick="makeEditable(this)">
+        <p id="aboutMeContent"><%= bio %></p>
+    </section>
+
+    <section id="user-options">
+        <h3>My Trails</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>x1</th>
+                    <th>y1</th>
+                    <th>x2</th>
+                    <th>y2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const trail of trails) { %>
+                <tr>
+                    <th><%= trail.x1 %></th>
+                    <th><%= trail.y1 %></th>
+                    <th><%= trail.x2 %></th>
+                    <th><%= trail.y2 %></th>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+        
+        <!-- Logout button -->
+        <form id="logoutForm" action="/logout" method="post">
+            <button type="submit" id="logout-btn" class="nav-button">Logout</button>
+        </form>
+    </section>
+
+    <script src="/scripts/makeEditable.js"></script>
+    <script src="/scripts/pageStyle.js"></script>
+</body>
 </html>
