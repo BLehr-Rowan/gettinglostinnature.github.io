@@ -5,7 +5,15 @@ body{
     min-height: 100vh;
     background-color: #f3f6fa;
 }
-
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .nav-button {
     background-color: #4CAF50; 
     color: white; 
