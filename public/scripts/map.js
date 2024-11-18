@@ -4,11 +4,11 @@ let directionsRenderer;
 let markers = [];
 let points = [];
 
-function initMap()
-{
+function initMap() {
+    // Centered at Rowan University
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 7,
-        center: { lat: 43.65107, lng: -79.347015 } // Centered in Toronto
+        zoom: 15,
+        center: { lat: 39.71037, lng: -75.11931 } // Rowan University coordinates
     });
 
     directionsService = new google.maps.DirectionsService();
@@ -17,51 +17,81 @@ function initMap()
 
     // Add a click listener to the map
     map.addListener("click", (event) => {
-        if(markers.length < 2)
-        {
+        if (markers.length < 2) {
             addMarker(event.latLng);
             points.push(event.latLng);
-            // Once two points are selected, calculate and display the route
-            if(markers.length === 2)
-            {
+
+            // Once two points are selected, calculating and display the route and facts
+            if (markers.length === 2) {
                 calculateAndDisplayRoute(points[0], points[1]);
-                addTrail(points[0].lat(), points[0].lng(), points[1].lat(), points[1].lng());
+                calculateDistanceAndDisplayFacts(points[0], points[1]);
             }
-        }
-        else
-        {
+        } else {
             // Reset if two points are already selected
             resetMap();
         }
     });
 }
 
-function addMarker(location)
-{
+function addMarker(location) {
     let marker = new google.maps.Marker({
         position: location,
         map: map
     });
     markers.push(marker);
 }
-function calculateAndDisplayRoute(origin, destination)
-{
+
+function calculateAndDisplayRoute(origin, destination) {
     let request = {
         origin: origin,
         destination: destination,
         travelMode: "WALKING"
     };
     directionsService.route(request, (result, status) => {
-        if (status === "OK")
-        {
+        if (status === "OK") {
             directionsRenderer.setDirections(result);
-        }
-        else
-        {
+        } else {
             window.alert("Directions request failed due to " + status);
         }
     });
 }
+
+function calculateDistanceAndDisplayFacts(pointA, pointB) {
+    const toRadians = (degrees) => (degrees * Math.PI) / 180;
+    const R = 3958.8; // Radius of Earth in miles
+
+    const lat1 = pointA.lat();
+    const lon1 = pointA.lng();
+    const lat2 = pointB.lat();
+    const lon2 = pointB.lng();
+
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c;
+
+    // Update the sidebar
+    document.getElementById("distance-info").textContent = `Distance: ${distance.toFixed(2)} miles`;
+    document.getElementById("additional-info").textContent = "Elevation gain and other details coming soon!";
+    showSidebar();
+}
+
+function showSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.add("visible");
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.remove("visible");
+}
+
 function resetMap() {
     // Clear markers
     markers.forEach(marker => marker.setMap(null));
@@ -69,14 +99,6 @@ function resetMap() {
     points = [];
     // Clear directions
     directionsRenderer.set("directions", null);
-}
-function addTrail(x1, y1, x2, y2)
-{
-//     let form = document.getElementById("addTrail");
-//     form.x1.value = x1;
-//     form.y1.value = y1;
-//     form.x2.value = x2;
-//     form.y2.value = y2;
-//     form.submit();
-    window.location.href = `/addTrail?x1=${x1}&y1=${y1}&x2=${x2}&y2=${y2}`;
+    // Hide sidebar
+    closeSidebar();
 }

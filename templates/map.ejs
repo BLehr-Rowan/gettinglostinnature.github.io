@@ -21,12 +21,10 @@
             height: calc(100vh - 100px);
             /* Adjust for header height */
             width: 100vw;
-            /* Full viewport width */
         }
 
         header {
             height: 100px;
-            /* Set to match map height offset */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,63 +37,75 @@
             display: flex;
             gap: 10px;
         }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            transition: right 0.3s ease;
+            z-index: 1000;
+        }
+
+        #sidebar.visible {
+            right: 0;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #sidebar h2 {
+            margin-top: 0;
+        }
     </style>
 </head>
 
 <body>
     <header>
-
-    <!-- Logo -->
-    <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
-
-    <!-- Button Container -->
-    <div class="button-container">
-        <% if (!loggedIn) { %>
-            <form id="loginForm" action="/login" method="post">
-                <input type="submit" id="login-button" name="login" value="Login">
-            </form>
-            <form id="signUpForm" action="/create-account" method="post">
-                <input type="submit" id="signup-button" name="signUp" value="Sign Up">
-            </form>
-        <% } else { %>
-            <!-- Profile Button for logged-in users -->
-            <form id="profileForm" action="/profile" method="get">
-                <input type="submit" id="profile-button" name="profile" value="My Profile">
-            </form>
-        <% } %>
-    </div>
-
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" placeholder="Search for trails..." aria-label="Search for trails">
-        <button id="search-button">Search</button>
-    </div>
-
-</header>
+        <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
+        <div class="button-container">
+            <% if (!loggedIn) { %>
+                <form id="loginForm" action="/login" method="post">
+                    <input type="submit" id="login-button" name="login" value="Login">
+                </form>
+                <form id="signUpForm" action="/create-account" method="post">
+                    <input type="submit" id="signup-button" name="signUp" value="Sign Up">
+                </form>
+                <% } else { %>
+                    <form id="profileForm" action="/profile" method="get">
+                        <input type="submit" id="profile-button" name="profile" value="My Profile">
+                    </form>
+                    <% } %>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search for trails..." aria-label="Search for trails">
+            <button id="search-button">Search</button>
+        </div>
+    </header>
 
     <div id="map"></div>
 
-    <!-- Modal Structure -->
-    <div id="welcomeModal" class="modal">
-        <div class="modal-content">
-            <h2>Welcome!</h2>
-            <p>Getting Lost (In Nature) finds walking trails within a given area for you to explore. <br>Try clicking
-                two points on the map to get started.</p>
-            <button class="modal-close" onclick="closeModal()">Got it!</button>
-        </div>
+    <div id="sidebar" class="hidden">
+        <button class="close-button" onclick="closeSidebar()">×</button>
+        <h2>Trail Information</h2>
+        <p id="distance-info">Distance: Calculating...</p>
+        <p id="additional-info">Additional Facts: Loading...</p>
     </div>
 
     <script src="scripts/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap"
         async defer></script>
-
-    <script>
-        // JavaScript to close the modal
-        function closeModal() {
-            document.getElementById("welcomeModal").classList.add("hidden");
-        }
-
-    </script>
 </body>
 
-</html> 
+</html>
