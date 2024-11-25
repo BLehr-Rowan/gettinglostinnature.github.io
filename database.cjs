@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
 // });
 const trailSchema = new mongoose.Schema({
     creator: String,
+    name: String,
     x1: Number,
     y1: Number,
     x2: Number,
@@ -83,11 +84,38 @@ async function getTrails(username)
         return 0;
     }
 }
+async function findTrail(name)
+{
+    try
+    {
+        return await TrailModel.findOne({ name: name });
+    }
+    catch(error)
+    {
+        console.log(error);
+        return 0;
+    }
+}
+async function findTrailLike(name)
+{
+    try
+    {
+        return await TrailModel.findOne({name: {$regex: `.*${name}.*`}});
+    }
+    catch(error)
+    {
+        console.log(error);
+        return 0;
+    }
+}
+
 
 module.exports = {
     getUser,
     insertUser,
     insertTrail,
-    getTrails
+    getTrails,
+    findTrail,
+    findTrailLike
 };
 

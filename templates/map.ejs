@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Getting Lost! In Nature</title>
+    <link rel="icon" href="images/icon.png" type="image/icon">
     <link rel="stylesheet" type="text/css" href="/styles/map.css"> <!-- Link to external CSS file -->
     <style>
         /* Inline CSS to remove scrollbars and adjust map size */
@@ -41,12 +42,13 @@
         #sidebar {
             position: fixed;
             top: 0;
-            right: -300px;
+            right: -350px;
             width: 300px;
             height: 100%;
             background-color: #fff;
             box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
             padding: 20px;
+            
             transition: right 0.3s ease;
             z-index: 1000;
         }
@@ -56,6 +58,7 @@
         }
 
         .close-button {
+            color: #000000;
             position: absolute;
             top: 10px;
             right: 10px;
@@ -89,18 +92,28 @@
                     <% } %>
         </div>
         <div class="search-container">
-            <input type="text" placeholder="Search for trails..." aria-label="Search for trails">
-            <button id="search-button">Search</button>
+            <form action="findTrail" method="get">
+                <input type="text" name="trailName" placeholder="Search for trails..." aria-label="Search for trails" required>
+                <input type="submit" id="search-button" value="Search">
+            </form>
         </div>
     </header>
 
     <div id="map"></div>
 
     <div id="sidebar" class="hidden">
-        <button class="close-button" onclick="closeSidebar()">×</button>
+        <button class="close-button" onclick="closeSidebar()">&#10006;</button>
         <h2>Trail Information</h2>
         <p id="distance-info">Distance: Calculating...</p>
         <p id="additional-info">Additional Facts: Loading...</p>
+        <form action="addTrail" method="POST">
+            <input type="text" name="name">
+            <input type="hidden" id="x1" name="x1" value="">
+            <input type="hidden" id="y1" name="y1" value="">
+            <input type="hidden" id="x2" name="x2" value="">
+            <input type="hidden" id="y2" name="y2" value="">
+            <input type="submit" onclick="setPointValues()">
+        </form>
     </div>
 
     <script src="scripts/map.js"></script>

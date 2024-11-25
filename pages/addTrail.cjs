@@ -6,7 +6,7 @@ const db = require(path.join(__dirname, "../database.cjs"));
  */
 module.exports = {
     name: "/addTrail",
-    method: "get",
+    method: "post",
     execute(req, res)
     {
         if(!req.cookies.username)
@@ -14,12 +14,14 @@ module.exports = {
             res.redirect("/");
             return;
         }
+        // console.log(req.body);
         db.insertTrail({
             "creator": req.cookies.username,
-            "x1": req.query.x1,
-            "y1": req.query.y1,
-            "x2": req.query.x2,
-            "y2": req.query.y2
+            "name": req.body.name,
+            "x1": req.body.x1,
+            "y1": req.body.y1,
+            "x2": req.body.x2,
+            "y2": req.body.y2
         });
         res.redirect("map");
     }

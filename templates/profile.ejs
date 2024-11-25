@@ -8,6 +8,7 @@
     <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
     </div>
     <title>Log In</title>
+    <link rel="icon" href="images/icon.png" type="image/icon">
     <link rel="stylesheet" type="text/css" href="/styles/style.css">
     <link rel="stylesheet" type="text/css" href="/styles/profile.css">
 </head>
@@ -39,23 +40,29 @@
     </section>
 
     <section id="user-options">
-        <h3>My Trails</h3>
+        <!-- <h3>My Trails</h3> -->
         <table>
             <thead>
                 <tr>
-                    <th>x1</th>
+                    <th><h3>My Trails</h3></th>
+                    <!-- <th>x1</th>
                     <th>y1</th>
                     <th>x2</th>
-                    <th>y2</th>
+                    <th>y2</th> -->
                 </tr>
             </thead>
             <tbody>
                 <% for (const trail of trails) { %>
                 <tr>
-                    <th><%= trail.x1 %></th>
+                    <th>
+                        <a href="map?x1=<%= trail.x1 %>&y1=<%= trail.y1 %>&x2=<%= trail.x2 %>&y2=<%= trail.y2 %>">
+                            <%= (trail.name ? trail.name : `(${trail.x1},${trail.y1}),(${trail.x2},${trail.y2})`) %>
+                        </a>
+                    </th>
+                    <!-- <th><%= trail.x1 %></th>
                     <th><%= trail.y1 %></th>
                     <th><%= trail.x2 %></th>
-                    <th><%= trail.y2 %></th>
+                    <th><%= trail.y2 %></th> -->
                 </tr>
                 <% } %>
             </tbody>

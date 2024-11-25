@@ -15,6 +15,29 @@ function initMap() {
     directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map);
 
+    let params = new URLSearchParams(window.location.search);
+    let x1 = params.get("x1");
+    let y1 = params.get("y1");
+    let x2 = params.get("x2");
+    let y2 = params.get("y2");
+    if (x1 !== null && x1 !== undefined && !isNaN(x1) &&
+        y1 !== null && y1 !== undefined && !isNaN(y1)) {
+        const point1 = new google.maps.LatLng(x1, y1);
+        addMarker(point1);
+        points.push(point1);
+    }
+
+    if (x2 !== null && x2 !== undefined && !isNaN(x2) &&
+        y2 !== null && y2 !== undefined && !isNaN(y2)) {
+        const point2 = new google.maps.LatLng(x2, y2);
+        addMarker(point2);
+        points.push(point2);
+    }
+    if (markers.length === 2) {
+        calculateAndDisplayRoute(points[0], points[1]);
+        calculateDistanceAndDisplayFacts(points[0], points[1]);
+    }
+
     // Add a click listener to the map
     map.addListener("click", (event) => {
         if (markers.length < 2) {
@@ -101,4 +124,12 @@ function resetMap() {
     directionsRenderer.set("directions", null);
     // Hide sidebar
     closeSidebar();
+}
+
+function setPointValues()
+{
+    document.getElementById("x1").value = points[0].lat();
+    document.getElementById("y1").value = points[0].lng();
+    document.getElementById("x2").value = points[1].lat();
+    document.getElementById("y2").value = points[1].lng();
 }
