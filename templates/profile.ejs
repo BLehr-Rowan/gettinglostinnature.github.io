@@ -54,11 +54,19 @@
             <tbody>
                 <% for (const trail of trails) { %>
                 <tr>
-                    <th>
+                    <td>
                         <a href="map?x1=<%= trail.x1 %>&y1=<%= trail.y1 %>&x2=<%= trail.x2 %>&y2=<%= trail.y2 %>">
                             <%= (trail.name ? trail.name : `(${trail.x1},${trail.y1}),(${trail.x2},${trail.y2})`) %>
                         </a>
-                    </th>
+                    </td>
+                    <% if(removeTrail) { %>
+                    <td>
+                        <form action="/removeTrail" method="post">
+                            <input type="hidden" name="trail" value="<%= trail._id %>">
+                            <input type="submit" value="delete" style="background-color:red">
+                        </form>
+                    </td>
+                    <% } %>
                     <!-- <th><%= trail.x1 %></th>
                     <th><%= trail.y1 %></th>
                     <th><%= trail.x2 %></th>
@@ -72,6 +80,12 @@
         <form id="logoutForm" action="/logout" method="post">
             <button type="submit" id="logout-btn" class="nav-button">Logout</button>
         </form>
+        <% if(!removeTrail) { %>
+        <form action="/profile" method="get">
+            <input type="hidden" name="removeTrail" value="1">
+            <input type="submit" value ="Remove Trail" class="nav-button" style="background-color:red">
+        </form>
+        <% } %>
     </section>
 
     <script src="/scripts/makeEditable.js"></script>

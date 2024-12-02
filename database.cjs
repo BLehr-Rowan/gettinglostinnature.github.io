@@ -108,6 +108,18 @@ async function findTrailLike(name)
         return 0;
     }
 }
+async function removeTrail(id)
+{
+    try
+    {
+        await TrailModel.deleteOne({ _id: id });
+    }
+    catch(error)
+    {
+        console.log(error)
+        return 0;
+    }
+}
 
 
 module.exports = {
@@ -116,6 +128,7 @@ module.exports = {
     insertTrail,
     getTrails,
     findTrail,
-    findTrailLike
+    findTrailLike,
+    removeTrail
 };
 

@@ -21,6 +21,7 @@ module.exports = {
             trails: trails,
             pfp: pfp ?? "/images/default.jpg",
             bio: bio ?? "About Me...",
+            removeTrail: req.query.removeTrail
         });
     }
 };
