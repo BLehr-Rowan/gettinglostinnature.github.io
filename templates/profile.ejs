@@ -1,92 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="author" content="Cory Lillis">
     <meta charset="UTF-8">
+    <meta name="author" content="Cory Lillis">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <div class="logo-container">
-    <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
-    </div>
     <title>Log In</title>
     <link rel="icon" href="images/icon.png" type="image/icon">
-    <link rel="stylesheet" type="text/css" href="/styles/style.css">
-    <link rel="stylesheet" type="text/css" href="/styles/profile.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/profile.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li>
-     
-                <!-- Profile button -->
-                <button onclick="window.location.href='/profile'" class="nav-button">Profile</button>
-            </li>
-            <li>
-                <!-- Map button -->
-                <button onclick="window.location.href='/map'" class="nav-button">Map</button>
-            </li>
-        </ul>
-    </nav>
-
-    <h1 id="profile-greeting">Hello <%= username %></h1>
-    
     <header>
-        <img src="<%= pfp %>" id="hero-image">
-        <!-- <input type="file" id="userImage" name="image">
-        <label for="userImage" id="uploadButton"></label> -->
+<!-- Logo -->
+<div class="logo-container">
+    <a href="/">
+        <img src="/images/logo.png" id="logo" alt="Getting Lost Logo">
+    </a>
+</div>
+        <!-- Navigation and buttons on the right -->
+        <div class="header-right">
+            <button onclick="window.location.href='/map'" class="nav-button">Map</button>
+            <form id="logoutForm" action="/logout" method="post">
+                <button type="submit" id="logout-btn" class="nav-button">Logout</button>
+            </form>
+            <% if (!removeTrail) { %>
+            <form action="/profile" method="get">
+                <input type="hidden" name="removeTrail" value="1">
+                <input type="submit" value="Remove Trail" class="nav-button">
+            </form>
+            <% } %>
+        </div>
     </header>
+    
+    <div class="centered-container">
+        <h1 id="profile-greeting">Welcome Back,  <%= username %>!</h1>
+        <br>
 
-    <!-- <section id="aboutMe" onClick="makeEditable(this)">
-        <p id="aboutMeContent"><%= bio %></p>
-    </section> -->
-
-    <section id="user-options">
-        <!-- <h3>My Trails</h3> -->
-        <table>
-            <thead>
-                <tr>
-                    <th><h3>My Trails</h3></th>
-                    <!-- <th>x1</th>
-                    <th>y1</th>
-                    <th>x2</th>
-                    <th>y2</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <% for (const trail of trails) { %>
-                <tr>
-                    <td>
-                        <a href="map?x1=<%= trail.x1 %>&y1=<%= trail.y1 %>&x2=<%= trail.x2 %>&y2=<%= trail.y2 %>">
-                            <%= (trail.name ? trail.name : `(${trail.x1},${trail.y1}),(${trail.x2},${trail.y2})`) %>
-                        </a>
-                    </td>
-                    <% if(removeTrail) { %>
-                    <td>
-                        <form action="/removeTrail" method="post">
-                            <input type="hidden" name="trail" value="<%= trail._id %>">
-                            <input type="submit" value="delete" style="background-color:red">
-                        </form>
-                    </td>
+        <!-- Section for user options -->
+        <section id="user-options">
+            <table>
+                <thead>
+                    <tr>
+                        <th><h3>My Trails</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (const trail of trails) { %>
+                    <tr>
+                        <td>
+                            <a href="map?x1=<%= trail.x1 %>&y1=<%= trail.y1 %>&x2=<%= trail.x2 %>&y2=<%= trail.y2 %>">
+                                <%= (trail.name ? trail.name : `(${trail.x1},${trail.y1}),(${trail.x2},${trail.y2})`) %>
+                            </a>
+                        </td>
+                        <% if (removeTrail) { %>
+                        <td>
+                            <form action="/removeTrail" method="post">
+                                <input type="hidden" name="trail" value="<%= trail._id %>">
+                                <input type="submit" value="Delete" style="background-color:red">
+                            </form>
+                        </td>
+                        <% } %>
+                    </tr>
                     <% } %>
-                    <!-- <th><%= trail.x1 %></th>
-                    <th><%= trail.y1 %></th>
-                    <th><%= trail.x2 %></th>
-                    <th><%= trail.y2 %></th> -->
-                </tr>
-                <% } %>
-            </tbody>
-        </table>
-        
-        <!-- Logout button -->
-        <form id="logoutForm" action="/logout" method="post">
-            <button type="submit" id="logout-btn" class="nav-button">Logout</button>
-        </form>
-        <% if(!removeTrail) { %>
-        <form action="/profile" method="get">
-            <input type="hidden" name="removeTrail" value="1">
-            <input type="submit" value ="Remove Trail" class="nav-button" style="background-color:red">
-        </form>
-        <% } %>
-    </section>
+                </tbody>
+            </table>
+        </section>
+    </div>
 
     <script src="/scripts/makeEditable.js"></script>
     <script src="/scripts/pageStyle.js"></script>

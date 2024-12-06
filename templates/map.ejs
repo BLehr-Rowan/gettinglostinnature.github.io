@@ -67,6 +67,19 @@
             font-size: 20px;
             cursor: pointer;
         }
+        #sidebar input[type="submit"]{
+        background-color: #2a852d;
+            color: white;
+            border: 1px solid black;
+            border-radius: 2px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            #sidebar input[type="submit"]:hover {
+                background-color: #2a8542;
+            }
+        }
 
         #sidebar h2 {
             margin-top: 0;
@@ -93,8 +106,8 @@
         </div>
         <div class="search-container">
             <form action="findTrail" method="get">
-                <input type="text" name="trailName" placeholder="Search for trails..." aria-label="Search for trails" required>
-                <input type="submit" id="search-button" value="Search">
+                <input type="text" name="trailName" placeholder="Search for your saved trails!" aria-label="Search for trails" required>
+                <input type="submit" id="search-button" value="Search My Trails">
             </form>
         </div>
     </header>
@@ -107,14 +120,43 @@
         <p id="distance-info">Distance: Calculating...</p>
         <p id="additional-info">Additional Facts: Loading...</p>
         <form action="addTrail" method="POST">
-            <input type="text" name="name">
+            <input type="text" name="name" placeholder="Please name your trail">
             <input type="hidden" id="x1" name="x1" value="">
             <input type="hidden" id="y1" name="y1" value="">
             <input type="hidden" id="x2" name="x2" value="">
             <input type="hidden" id="y2" name="y2" value="">
-            <input type="submit" onclick="setPointValues()">
+            <input type="submit" value="Save Trail" onclick="setPointValues()">
+
         </form>
     </div>
+ <!-- Modal Structure -->
+<div id="welcomeModal" class="modal">
+    <div class="modal-content">
+        <h2>Welcome!</h2>
+        <p>Getting Lost (In Nature) finds walking trails within a given area for you to explore. <br>Try clicking two points on the map to get started.</p>
+        <button class="modal-close" onclick="closeModal()">Got it!</button>
+    </div>
+</div>
+
+<script>
+    // Function to close the modal and save a flag in localStorage
+    function closeModal() {
+        document.getElementById("welcomeModal").classList.add("hidden");
+        sessionStorage.setItem("modalShown", "true"); // Save the flag
+    }
+
+    // Check if the modal has been shown before
+    window.onload = function () {
+        const modalShown = sessionStorage.getItem("modalShown");
+        if (!modalShown) {
+            // Show the modal if it's the user's first time
+            document.getElementById("welcomeModal").classList.remove("hidden");
+        } else {
+            // Hide the modal by default
+            document.getElementById("welcomeModal").classList.add("hidden");
+        }
+    };
+</script>
 
     <script src="scripts/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-Ep4rBtq2tecPJgVqHYS9vt6vKwFLFuE&callback=initMap"
