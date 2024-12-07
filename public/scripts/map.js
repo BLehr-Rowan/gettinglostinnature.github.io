@@ -20,6 +20,7 @@ function initMap() {
     let y1 = params.get("y1");
     let x2 = params.get("x2");
     let y2 = params.get("y2");
+
     if (x1 !== null && x1 !== undefined && !isNaN(x1) &&
         y1 !== null && y1 !== undefined && !isNaN(y1)) {
         const point1 = new google.maps.LatLng(x1, y1);
@@ -33,6 +34,7 @@ function initMap() {
         addMarker(point2);
         points.push(point2);
     }
+
     if (markers.length === 2) {
         calculateAndDisplayRoute(points[0], points[1]);
         calculateDistanceAndDisplayFacts(points[0], points[1]);
@@ -44,7 +46,7 @@ function initMap() {
             addMarker(event.latLng);
             points.push(event.latLng);
 
-            // Once two points are selected, calculating and display the route and facts
+            // Once two points are selected, calculate and display the route and facts
             if (markers.length === 2) {
                 calculateAndDisplayRoute(points[0], points[1]);
                 calculateDistanceAndDisplayFacts(points[0], points[1]);
@@ -97,11 +99,28 @@ function calculateDistanceAndDisplayFacts(pointA, pointB) {
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c;
+    const distance = R * c; // Distance in miles
+
+    // Calculate walking time in minutes
+    const walkingSpeed = 3.1; // Average walking speed in miles per hour
+    const walkingTimeHours = distance / walkingSpeed; // Time in hours
+    const walkingTimeMinutes = walkingTimeHours * 60; // Time in minutes
+
+    let timeText;
+    if (walkingTimeMinutes < 1) {
+        const walkingTimeSeconds = Math.round(walkingTimeMinutes * 60);
+        timeText = `Walking Time: ${walkingTimeSeconds} seconds`;
+    } else if (walkingTimeMinutes < 60) {
+        timeText = `Walking Time: ${walkingTimeMinutes.toFixed(0)} minutes`;
+    } else {
+        const hours = Math.floor(walkingTimeMinutes / 60);
+        const minutes = Math.round(walkingTimeMinutes % 60);
+        timeText = `Walking Time: ${hours} hour${hours > 1 ? "s" : ""} and ${minutes} minute${minutes !== 1 ? "s" : ""}`;
+    }
 
     // Update the sidebar
     document.getElementById("distance-info").textContent = `Distance: ${distance.toFixed(2)} miles`;
-    document.getElementById("additional-info").textContent = "Elevation gain and other details coming soon!";
+    document.getElementById("additional-info").textContent = timeText; // Update walking time info
     showSidebar();
 }
 
@@ -126,8 +145,7 @@ function resetMap() {
     closeSidebar();
 }
 
-function setPointValues()
-{
+function setPointValues() {
     document.getElementById("x1").value = points[0].lat();
     document.getElementById("y1").value = points[0].lng();
     document.getElementById("x2").value = points[1].lat();
