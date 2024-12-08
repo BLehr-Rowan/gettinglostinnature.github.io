@@ -34,15 +34,10 @@
     
     <div class="centered-container">
         <h1 id="profile-greeting">Welcome Back,  <%= username %>!</h1>
-        <br>
-
-        <!-- Section for user options -->
-        <section id="user-options">
+      <h3>My Trails</h3>
             <table>
                 <thead>
-                    <tr>
-                        <th><h3>My Trails</h3></th>
-                    </tr>
+                    
                 </thead>
                 <tbody>
                     <% for (const trail of trails) { %>
@@ -56,7 +51,7 @@
                         <td>
                             <form action="/removeTrail" method="post">
                                 <input type="hidden" name="trail" value="<%= trail._id %>">
-                                <input type="submit" value="Delete" style="background-color:red">
+                                <input type="submit" value="Delete" id="remove">
                             </form>
                         </td>
                         <% } %>

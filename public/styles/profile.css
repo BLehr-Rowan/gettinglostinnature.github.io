@@ -8,7 +8,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('/images/background.png')
+    background-image: url('/images/background.png');
 }
 
 /* Header Styling */
@@ -28,6 +28,7 @@ header {
     top: 0;
     z-index: 10;
 }
+
 
 .header-right {
     display: flex;
@@ -57,7 +58,7 @@ header {
     justify-content: center;
     height: 100vh;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Light background */
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -69,13 +70,15 @@ header {
     border-radius: 4px;
 }
 
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 15px;
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
+    border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
 }
 
 thead {
@@ -88,13 +91,52 @@ th, td {
     border: 1px solid #ddd;
 }
 
+
+tbody tr:nth-child(2) td:first-child {
+    border-bottom-left-radius: 12px;
+    overflow: hidden; 
+}
+
+tbody tr:nth-child(2) td:last-child {
+    border-bottom-right-radius: 12px;
+    overflow: hidden;
+}
+
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-tbody tr:hover {
-    background-color: #f1f1f1;
+tbody tr {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 15px; 
+    }
+
+    tbody tr:nth-child(2):hover td:first-child {
+        border-bottom-left-radius: 15px; 
+    }
+
+    tbody tr:nth-child(2):hover td:last-child {
+        border-bottom-right-radius: 15px; 
+    }
+
+#remove {
+    background-color: transparent; 
+    color: red; 
+    border-radius: 5px; 
+    border-color: transparent;
+    cursor: pointer; 
+}
+
+#remove:hover {
+        background-color: red;
+        color: white; 
+    }
+
 
 @media (max-width: 600px) {
     nav ul {
