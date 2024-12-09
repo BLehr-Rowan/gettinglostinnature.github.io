@@ -102,7 +102,7 @@ function calculateDistanceAndDisplayFacts(pointA, pointB) {
     const distance = R * c; // Distance in miles
 
     // Calculate walking time in minutes
-    const walkingSpeed = 3.1; // Average walking speed in miles per hour
+    const walkingSpeed = 4; // Average walking speed in miles per hour
     const walkingTimeHours = distance / walkingSpeed; // Time in hours
     const walkingTimeMinutes = walkingTimeHours * 60; // Time in minutes
 
